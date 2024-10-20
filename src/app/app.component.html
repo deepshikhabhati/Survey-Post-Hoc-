@@ -1,0 +1,102 @@
+<div style="display: flex;width: 100%;height: 100vh;font-family: cursive;">
+<div style="width: 50%;">
+  <div style="height:47%;">
+    <app-chart-component (emitChartValue)="chartEdit($event)"></app-chart-component>
+  </div>
+  <div class="keywords">
+    <span *ngFor="let keyword of selectedKeys" class="keyword">
+     <span  [ngStyle]="{'background-color': selectedKeys.includes(keyword) ? '#add8e6' : '#add8e6'}" (click)="selectedKeyword(keyword)"> {{ keyword }} </span>
+    </span>
+  </div>
+  <div style="height: 50%;">
+    <div style="border: 2px solid black;height: 100%;overflow-x: auto;">
+      <div   (mouseenter)="onHover(i)" (mouseleave)="onLeave(i)" *ngFor="let data of listOfData;let i = index" class="item-div" (click)="selectedOne = data"  [ngClass]="{'hovered': isHovered[i]}" >
+        <div>
+          <h4> {{ data.bibtex.year }} -- {{ data.bibtex.title }} </h4>
+          <span> {{ data.bibtex.author }}</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="width: 50%">
+  <div class="keyword-wrapper" [ngStyle]="{'height': !isExpanded ? '5%' : '20%'}">
+    <!-- Arrow or button to toggle the keyword box -->
+    <button class="toggle-button" (click)="toggleKeywords()">
+      <span *ngIf="!isExpanded">&#x25BC;</span> <!-- Down arrow -->
+      <span *ngIf="isExpanded">&#x25B2;</span>  <!-- Up arrow -->
+
+    </button>
+  Keyword
+
+    <!-- Collapsible keyword box -->
+    <div class="keyword-box" [ngClass]="{'expanded': isExpanded, 'collapsed': !isExpanded}">
+      <div class="keyword-container">
+        <span [ngStyle]="{'background-color': selectedKeys.includes(key.key) ? '#add8e6' : '#e9ecef'}" (click)="selectedKeyword(key.key)" class="keyword" *ngFor="let key of keywordCounts">
+          {{ key.key }}: {{ key.count }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div style="border: 2px solid black;" [ngStyle]="{'height': !isExpanded ? '95%' : '80%'}">
+
+    <div style="padding: 2%;">
+      <h1> <span class="box" [style.backgroundColor]="selectedOne.group"></span>
+        {{ selectedOne.bibtex.title}}
+        </h1>
+        <div style="display: flex;justify-content: space-between;">
+        <div> {{ selectedOne.bibtex.author }}</div>
+        <div> {{ selectedOne.bibtex.year }} </div>
+      </div>
+      <div>
+        {{ selectedOne.citation_count }} citations
+      </div>
+<br>
+
+      <div>
+        Open in 
+        <a [href]="selectedOne.googleScholarLink" target="_blank" title="Google Scholar">
+        <i class="fa-brands fa-google" style="margin-left: 2%;"></i>
+        </a>
+        <a [href]="selectedOne.externalLink" target="_blank" title="External Link">
+        <i class="fa-solid fa-cloud-arrow-up"  style="margin-left: 2%;"></i>
+        </a>
+        <a [href]="selectedOne.DOI" target="_blank" title="Doi">
+        <i class="fa-solid fa-location-pin" style="margin-left: 2%;"></i>
+        </a>
+
+      </div> 
+
+      <div *ngIf="selectedOne.keywords" class="keywords-container">
+        <h3>Keywords:</h3>
+        <div class="keywords">
+          <span *ngFor="let keyword of selectedOne.keywords" class="keyworded">
+           <span  [ngStyle]="{'background-color': selectedKeys.includes(keyword) ? '#add8e6' : 'transparent'}" (click)="selectedKeyword(keyword)"> {{ keyword }} </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab" [class.active]="activeTab === 'tab1'" (click)="selectTab('tab1')">Citation</button>
+        <button class="tab" [class.active]="activeTab === 'tab2'" (click)="selectTab('tab2')">BibTex</button>
+      </div>
+      
+      <div class="tab-content" *ngIf="activeTab">
+        <div *ngIf="activeTab === 'tab1'" class="tab-div">
+          <p> {{ selectedOne.reference }}</p>
+        </div>
+        <div *ngIf="activeTab === 'tab2'" class="tab-div">
+        
+          <p> {{ selectedOne.bibTexContent }}</p>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div>
+        {{ selectedOne.abstract }}
+      </div>
+    </div>
+  </div>
+</div>
+</div>

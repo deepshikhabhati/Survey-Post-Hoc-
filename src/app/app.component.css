@@ -1,0 +1,132 @@
+
+
+  .item-div {
+    padding: 10px;
+    background-color: #f0f0f0;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    transition: background-color 0.3s ease;
+  }
+
+  .item-div.hovered {
+    background-color: #add8e6; /* Change background color on hover */
+  }
+
+  .icon-spacing {
+    margin-right: 10px;
+  }
+
+  .keywords-container {
+    margin: 20px;
+  }
+  
+  .keywords {
+    display: flex;
+    flex-wrap: wrap; /* Allows keywords to wrap to the next line */
+  }
+  
+  .keyworded {
+    background-color: #e0e0e0; /* Light gray background */
+    border-radius: 16px; /* Rounded corners */
+    padding: 5px 10px; /* Padding around the text */
+    margin: 5px; /* Space between keywords */
+    font-size: 14px; /* Font size */
+  }
+  
+  .box {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    border-radius: 3px;
+    border: 1px solid #333; /* Optional border to define the box */
+  }
+
+  .keyword-wrapper {
+    width: 100%; /* Set the container width */
+    border: 1px solid #ccc; /* Optional: Add a border */
+    padding: 10px;    /* Optional: Add some padding */
+    overflow-y: auto; /* Enable vertical scrolling */
+    background-color: #f9f9f9;
+  }
+  
+  .toggle-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .toggle-button span {
+    font-size: 18px;
+  }
+  
+  .keyword-box {
+    overflow: hidden;
+    height: 0;
+    transition: height 0.5s ease; /* Smooth transition for height change */
+  }
+  
+  .keyword-box.expanded {
+    height: 200px; /* Set the height when expanded */
+  }
+  
+  .keyword-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .keyword {
+    background-color: #e9ecef;
+    border-radius: 4px;
+    padding: 5px 10px;
+    margin: 5px;
+    flex: 1 1 23%;
+    box-sizing: border-box;
+    text-align: center;
+    word-wrap: break-word;
+  }
+  
+  .keyword-box.collapsed {
+    height: 0;
+  }
+  
+  .keyword-box.expanded {
+    height: auto; /* When expanded, let the height adjust to content */
+    transition: height 0.5s ease-in-out; /* Smooth transition when expanding/collapsing */
+  }
+  
+  /* Optional: Hover effect */
+  .keyword:hover {
+    background-color: #ddd;
+    cursor: pointer;
+  }
+  
+  .tabs {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .tab {
+    cursor: pointer;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    text-align: center;
+  }
+  
+  .tab.active {
+    background-color: white;
+    font-weight: bold;
+    border-top: 2px solid #007bff; /* Highlight active tab */
+  }
+  
+  .tab-content {
+    border: 1px solid #ccc;
+  }
+  
+  .tab-div {
+  }
